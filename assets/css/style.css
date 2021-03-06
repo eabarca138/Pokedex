@@ -1,0 +1,126 @@
+body{
+    background-image: url(../img/mapa.png);
+    background-position:center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+table{
+    width: 100%;
+    border-collapse: separate;
+}
+tr{
+    color: #fff;
+    background-color: rgb(16, 88, 7);
+    height: 1.875rem;
+}
+tr:first-child, tr:nth-child(3), tr:nth-child(5){
+    background-color: rgb(16, 88, 7);
+    opacity: 0.6;
+}
+
+main{
+    position: relative;
+    border: inset 0.9375rem #DC3545;
+    background-color: grey;
+}
+
+h1{
+    font-family: 'VT323', monospace;
+}
+
+/* FORMULARIO */
+
+.pokebola{
+    width: 3.125rem;
+    height: 3.125rem;
+}
+
+.pokebola:hover{
+    opacity: 0.7;
+}
+
+a{
+    margin: auto 15px;
+}
+
+h1{
+    height: 3rem;
+}
+
+
+/* IMAGEN */
+
+.pokemon{
+    width: 9.375rem;
+    height: 9.375rem;
+}
+
+.fondo-imagen{
+    background-image: url(../img/fondo.jpg);
+    background-position:center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border: inset 5px rgb(165, 159, 159);
+    display: inline-block;
+    width: 14.375rem;
+    height: 12.5rem;
+}
+
+.simbolotipo{
+    width: 7.9375rem;
+    height: 7.9375rem;
+    margin:0 auto;
+    margin-bottom: 1.25rem;
+}
+
+/* STATS */
+
+.stats{
+    margin: auto 0;
+}
+
+/* GRÁFICO */
+
+.grafico{
+    display: none;
+}
+
+
+@media only screen and (min-width: 576px){
+    .grafico{
+        display: block;
+        background-color: rgba(3, 245, 15, 0.493);
+        border: solid 0.1875rem black;
+        height: 100%;
+        width: 10%;
+        padding: 0;
+        margin: 0;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .simbolotipo{
+        width: 0;
+        height: 0;
+        margin:0 auto;
+        margin-bottom: 0;
+    }
+  }
+  
+
+  @media only screen and (min-width: 992px) {
+    .simbolotipo{
+        width: 7.9375rem;
+        height: 7.9375rem;
+        margin:0 auto;
+        margin-bottom: 1.25rem;
+  }
+
+}
+
+  @media only screen and (max-width: 576px) {
+    .imagen{
+        margin-bottom: 30px;
+    }
+    }
