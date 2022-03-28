@@ -3,8 +3,6 @@ $( document ).ready(function() {
     $('#simboloTipo').hide()
 
 
-
-    
     var ctx = $('#myChart');
     var myChart = new Chart(ctx, {
         type: 'radar',
@@ -18,24 +16,26 @@ $( document ).ready(function() {
     });
 });
 
-$('#pokebola').click(function(){
 
+const peticionApi = function(){
+    
     let pokemon = $('#input').val().trim().toLowerCase();
-
-
+    
+    
     /* NOMBRE */
-
+    
     $.ajax({
         url: `https://pokeapi.co/api/v2/pokemon/${pokemon}`,
         type: 'GET',
         dataType: 'json',
         success: function(data){
-            $('#nombre').text(JSON.stringify(data.name).toUpperCase());
-}
+            $('#nombre1').text(JSON.stringify(data.name).toUpperCase());
+            $('#nombre2').text(JSON.stringify(data.name).toUpperCase());
+        }
     });
-
+    
     /* IMAGEN */
-
+    
     $.ajax({
         url: `https://pokeapi.co/api/v2/pokemon/${pokemon}`,
         type: 'GET',
@@ -46,7 +46,7 @@ $('#pokebola').click(function(){
             $('#imagen').fadeIn(600)
         }
     });
-
+    
     /* STATUS */
 
     $.ajax({
@@ -57,7 +57,7 @@ $('#pokebola').click(function(){
             $('#HP').text(JSON.stringify(data.stats[0].base_stat));
         }
     });
-
+    
     $.ajax({
         url: `https://pokeapi.co/api/v2/pokemon/${pokemon}`,
         type: 'GET',
@@ -66,8 +66,8 @@ $('#pokebola').click(function(){
             $('#ataque').text(JSON.stringify(data.stats[1].base_stat));
         }
     });
-
-
+    
+    
     $.ajax({
         url: `https://pokeapi.co/api/v2/pokemon/${pokemon}`,
         type: 'GET',
@@ -76,8 +76,8 @@ $('#pokebola').click(function(){
             $('#defensa').text(JSON.stringify(data.stats[2].base_stat));
         }
     });
-
-
+    
+    
     $.ajax({
         url: `https://pokeapi.co/api/v2/pokemon/${pokemon}`,
         type: 'GET',
@@ -86,8 +86,8 @@ $('#pokebola').click(function(){
             $('#ataque-especial').text(JSON.stringify(data.stats[3].base_stat));
         }
     });
-
-
+    
+    
     $.ajax({
         url: `https://pokeapi.co/api/v2/pokemon/${pokemon}`,
         type: 'GET',
@@ -96,8 +96,8 @@ $('#pokebola').click(function(){
             $('#defensa-especial').text(JSON.stringify(data.stats[4].base_stat));
         }
     });
-
-
+    
+    
     $.ajax({
         url: `https://pokeapi.co/api/v2/pokemon/${pokemon}`,
         type: 'GET',
@@ -106,10 +106,10 @@ $('#pokebola').click(function(){
             $('#velocidad').text(JSON.stringify(data.stats[5].base_stat));
         }
     });
-
-
+    
+    
     /* ARREGLO GRÁFICO */
-
+    
     $.ajax({
         url: `https://pokeapi.co/api/v2/pokemon/${pokemon}`,
         type: 'GET',
@@ -118,41 +118,40 @@ $('#pokebola').click(function(){
             let arrayStatus =  []
             $.each(data.stats, function(i, el){
                 arrayStatus[i] = data.stats[i].base_stat
-                console.log(arrayStatus);
             })
 
             /* GRÁFICO */
-
-            var ctx = $('#myChart');
-var myChart = new Chart(ctx, {
-    type: 'radar',
-    data: {
-        labels: ['HP', 'Attack', 'Defense', 'Special attack', 'Special defense', 'Speed'],
-        datasets: [{
             
-            label: 'Pokémon stats',
-            data: arrayStatus,
-            backgroundColor: "rgba(200,0,0,0.2)",
-            borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
-            borderWidth: 2
-        }]
+            var ctx = $('#myChart');
+            var myChart = new Chart(ctx, {
+                type: 'radar',
+                data: {
+                    labels: ['HP', 'Attack', 'Defense', 'Special attack', 'Special defense', 'Speed'],
+                    datasets: [{
+                        
+                        label: 'Pokémon stats',
+                        data: arrayStatus,
+                        backgroundColor: "rgba(200,0,0,0.2)",
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)'
+                        ],
+                        borderWidth: 2
+                    }]
     },
     
 });
         }
     });
-
-
-
+    
+    
+    
     /* CARACTERÍSTICAS */
-
+    
     $.ajax({
         url: `https://pokeapi.co/api/v2/pokemon/${pokemon}`,
         type: 'GET',
@@ -160,94 +159,94 @@ var myChart = new Chart(ctx, {
         success: function(data){
             let tipo = data.types[0].type.name
             $('#type').text(JSON.stringify(tipo));
-
+            
             if (tipo == "water"){
                 $('#simboloTipo').hide(120)
-                $('#simboloTipo').attr("src", "assets/img/water.png")
+                $('#simboloTipo').attr("src", "assets/img/Water.png")
                 $('#simboloTipo').fadeIn(600)
             }    else if (tipo == "bug"){
                 $('#simboloTipo').hide(120)
-                $('#simboloTipo').attr("src", "assets/img/bug.png")
+                $('#simboloTipo').attr("src", "assets/img/Bug.png")
                 $('#simboloTipo').fadeIn(600)
             }    
             else if (tipo == "dark"){
                 $('#simboloTipo').hide(120)
-                $('#simboloTipo').attr("src", "assets/img/dark.png")
+                $('#simboloTipo').attr("src", "assets/img/Dark.png")
                 $('#simboloTipo').fadeIn(600)
             }
             else if (tipo == "dragon"){
                 $('#simboloTipo').hide(120)
-                $('#simboloTipo').attr("src", "assets/img/dragon.png")
+                $('#simboloTipo').attr("src", "assets/img/Dragon.png")
                 $('#simboloTipo').fadeIn(600)
             }
             else if (tipo == "electric"){
                 $('#simboloTipo').hide(120)
-                $('#simboloTipo').attr("src", "assets/img/electric.png")
+                $('#simboloTipo').attr("src", "assets/img/Electric.png")
                 $('#simboloTipo').fadeIn(600)
             }
             else if (tipo == "fairy"){
                 $('#simboloTipo').hide(120)
-                $('#simboloTipo').attr("src", "assets/img/fairy.png")
+                $('#simboloTipo').attr("src", "assets/img/Fairy.png")
                 $('#simboloTipo').fadeIn(600)
             }
             else if (tipo == "fighting"){
                 $('#simboloTipo').hide(120)
-                $('#simboloTipo').attr("src", "assets/img/fighting.png")
+                $('#simboloTipo').attr("src", "assets/img/Fighting.png")
                 $('#simboloTipo').fadeIn(600)
             }
             else if (tipo == "fire"){
                 $('#simboloTipo').hide(120)
-                $('#simboloTipo').attr("src", "assets/img/fire.png")
+                $('#simboloTipo').attr("src", "assets/img/Fire.png")
                 $('#simboloTipo').fadeIn(600)
             }
             else if (tipo == "flying"){
                 $('#simboloTipo').hide(120)
-                $('#simboloTipo').attr("src", "assets/img/flying.png")
+                $('#simboloTipo').attr("src", "assets/img/Flying.png")
                 $('#simboloTipo').fadeIn(600)
             }
             else if (tipo == "ghost"){
                 $('#simboloTipo').hide(120)
-                $('#simboloTipo').attr("src", "assets/img/ghost.png")
+                $('#simboloTipo').attr("src", "assets/img/Ghost.png")
                 $('#simboloTipo').fadeIn(600)
             }
             else if (tipo == "grass"){
                 $('#simboloTipo').hide(120)
-                $('#simboloTipo').attr("src", "assets/img/grass.png")
+                $('#simboloTipo').attr("src", "assets/img/Grass.png")
                 $('#simboloTipo').fadeIn(600)
             }
             else if (tipo == "ground"){
                 $('#simboloTipo').hide(120)
-                $('#simboloTipo').attr("src", "assets/img/ground.png")
+                $('#simboloTipo').attr("src", "assets/img/Ground.png")
                 $('#simboloTipo').fadeIn(600)
             }
             else if (tipo == "ice"){
                 $('#simboloTipo').hide(120)
-                $('#simboloTipo').attr("src", "assets/img/ice.png")
+                $('#simboloTipo').attr("src", "assets/img/Ice.png")
                 $('#simboloTipo').fadeIn(600)
             }
             else if (tipo == "normal"){
                 $('#simboloTipo').hide(120)
-                $('#simboloTipo').attr("src", "assets/img/normal.png")
+                $('#simboloTipo').attr("src", "assets/img/Normal.png")
                 $('#simboloTipo').fadeIn(600)
             }
             else if (tipo == "poison"){
                 $('#simboloTipo').hide(120)
-                $('#simboloTipo').attr("src", "assets/img/poison.png")
+                $('#simboloTipo').attr("src", "assets/img/Poison.png")
                 $('#simboloTipo').fadeIn(600)
             }
             else if (tipo == "psychic"){
                 $('#simboloTipo').hide(120)
-                $('#simboloTipo').attr("src", "assets/img/psychic.png")
+                $('#simboloTipo').attr("src", "assets/img/Psychic.png")
                 $('#simboloTipo').fadeIn(600)
             }
             else if (tipo == "rock"){
                 $('#simboloTipo').hide(120)
-                $('#simboloTipo').attr("src", "assets/img/rock.png")
+                $('#simboloTipo').attr("src", "assets/img/Rock.png")
                 $('#simboloTipo').fadeIn(600)
             }
             else if (tipo == "steel"){
                 $('#simboloTipo').hide(120)
-                $('#simboloTipo').attr("src", "assets/img/steel.png")
+                $('#simboloTipo').attr("src", "assets/img/Steel.png")
                 $('#simboloTipo').fadeIn(600)
             }
         }
@@ -261,13 +260,12 @@ var myChart = new Chart(ctx, {
             $('#move').text(JSON.stringify(data.moves[0].move.name));
         }
     });
-
+    
     $.ajax({
         url: `https://pokeapi.co/api/v2/pokemon/${pokemon}`,
         type: 'GET',
         dataType: 'json',
         success: function(data){
-            console.log(data);
             $('#move2').text(JSON.stringify(data.moves[2].move.name));
         }
     });
@@ -289,4 +287,14 @@ var myChart = new Chart(ctx, {
             $('#idPokemon').text(JSON.stringify(data.id));
         }
     });
+
+    $('#input').val('');
+};
+
+$('#pokebola').click(peticionApi)
+
+$(input).on('keypress',function(e) {
+    if(e.which == 13) {
+        peticionApi()
+    }
 });

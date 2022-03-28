@@ -3,6 +3,7 @@ body{
     background-position:center;
     background-repeat: no-repeat;
     background-size: cover;
+    background-color: #DC3545;
 }
 
 table{
@@ -89,13 +90,10 @@ h1{
 
 @media only screen and (min-width: 576px){
     .grafico{
-        display: block;
+        display: inline-block;
         background-color: rgba(3, 245, 15, 0.493);
-        border: solid 0.1875rem black;
-        height: 100%;
-        width: 10%;
-        padding: 0;
-        margin: 0;
+        border: solid 0.1875rem rgba(21, 90, 21, 0.493);
+        width: 50px;
     }
 }
 
@@ -106,8 +104,23 @@ h1{
         margin:0 auto;
         margin-bottom: 0;
     }
-  }
-  
+    #nombre1{
+        display: none;
+    }
+    #nombre2{
+        display: block;
+    }
+}
+@media only screen and (max-width: 768px) {
+    #nombre2{
+        display: none;
+    }
+    #nombre1{
+        display: block;
+    }
+}
+
+
 
   @media only screen and (min-width: 992px) {
     .simbolotipo{
@@ -121,6 +134,6 @@ h1{
 
   @media only screen and (max-width: 576px) {
     .imagen{
-        margin-bottom: 30px;
+        margin-bottom: 1.875rem;
     }
     }
