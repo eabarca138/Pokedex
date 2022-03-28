@@ -288,13 +288,17 @@ const peticionApi = function(){
         }
     });
 
-    $('#input').val('');
 };
+
+$('#form').submit(function(e){
+    e.preventDefault();
+});
+
 
 $('#pokebola').click(peticionApi)
 
-$(input).on('keypress',function(e) {
+$('#input').keyup(function(e) {
     if(e.which == 13) {
-        peticionApi()
+        peticionApi() 
     }
 });
