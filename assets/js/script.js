@@ -287,7 +287,7 @@ const peticionApi = function(){
             $('#idPokemon').text(JSON.stringify(data.id));
         }
     });
-
+    $('#input').val('');
 };
 
 $('#form').submit(function(e){
@@ -300,5 +300,6 @@ $('#pokebola').click(peticionApi)
 $('#input').keyup(function(e) {
     if(e.which == 13) {
         peticionApi() 
+        $('#input').val('');
     }
 });
